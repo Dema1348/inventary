@@ -1,0 +1,31 @@
+
+<ion-header >
+  <ion-navbar color="dark">
+    <ion-title>Configuración</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+	<form>
+		<ion-list >
+	      <ion-item>
+	        <ion-label stacked>Nombre</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.nombre" name="nombre"></ion-input>
+	      </ion-item>
+	      <ion-item>
+	        <ion-label stacked>Usuario</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.usuario" name="usuario"></ion-input>
+	      </ion-item> 
+	      <ion-item>
+	        <ion-label stacked>Rut</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.rut" name="rut"></ion-input>
+	      </ion-item> 
+
+
+	  </ion-list>
+
+      <button ion-button round color="dark" type="button" block (click)="showConfirm()">Guardar</button>
+    </form>
+</ion-content>

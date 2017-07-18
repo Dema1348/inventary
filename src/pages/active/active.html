@@ -1,0 +1,130 @@
+<ion-header >
+  <ion-navbar color="dark">
+    <ion-title>Activo</ion-title>
+     <ion-buttons end>
+        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+	<form>
+		<ion-list >
+	      <ion-item>
+	        <ion-label stacked>Cuenta</ion-label>
+	        <ion-select  [(ngModel)]="form.cuenta" name="cuenta" (ngModelChange)="changeCuenta($event)">
+		      <ion-option *ngFor='let cuenta of inputs.cuentas' [value]="cuenta.id">
+		      	{{cuenta.cuenta}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+
+	      <ion-item>
+	        <ion-label stacked>Clase</ion-label>
+	       <ion-select  [(ngModel)]="form.clase" name="clase">
+		      <ion-option *ngFor='let clase of form.cuenta.clases' [value]="clase">
+		      	{{clase.clase}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+
+	    <ion-item>
+	        <ion-label stacked>Sub Clase</ion-label>
+	       <ion-select  [(ngModel)]="form.sub_clase" name="sub_clase">
+		       <ion-option *ngFor='let subClase of form.clase.subClases' [value]="subClase">
+		      	{{subClase.sub_clase}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+		
+
+		<ion-item>
+	        <ion-label stacked>Denomicación</ion-label>
+	       <ion-select  [(ngModel)]="form.denominacion" name="denominacion">
+		      <ion-option *ngFor='let denominacion of form.sub_clase.denominaciones' [value]="denominacion">
+		      	{{denominacion.denominacion}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+
+				
+		<ion-item>
+	        <ion-label stacked>Dependencia</ion-label>
+	       <ion-select  [(ngModel)]="form.dependencia" name="dependencia">
+		      <ion-option *ngFor='let dependencia of inputs.dependencias' [value]="dependencia.id">
+		      	{{dependencia.dependencia}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+
+
+		<ion-item-divider color="dark">
+		  Escanear Código
+		  <button  color="light" ion-button item-end outline (click)="scanCode()">
+		      Agregar
+		    </button>
+		</ion-item-divider>
+	      <ion-item>
+	        <ion-label stacked>Código de Barras</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" name="codigo_de_barras"></ion-input>
+	      </ion-item>
+<!-- 		  
+	       <ion-item>
+	        <ion-label stacked>Fecha de Adquisición</ion-label>
+	        <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="form.fecha" name="fecha"></ion-datetime>
+
+	      </ion-item>
+
+	      <ion-item>
+	        <ion-label stacked>Nombre del prooveedor</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.nombre" name="nombre" ></ion-input>
+	      </ion-item>
+		 <ion-item>
+	        <ion-label stacked>Costo de adquisición</ion-label>
+	        <ion-input clearInput type="number"  [(ngModel)]="form.costo" name="costo" ></ion-input>
+	      </ion-item> -->
+			
+
+		  <ion-item>
+	        <ion-label stacked>Responsable</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.nombre_responsable" name="nombre_responsable" ></ion-input>
+	      </ion-item>
+
+	      <ion-item>
+	        <ion-label stacked>Descripción</ion-label>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.descripcion" name="descripcion" ></ion-input>
+	      </ion-item>
+
+<!-- 	      <ion-item>
+	        <ion-label stacked>Ubicación</ion-label>
+	        <ion-select   [(ngModel)]="form.ubicacion" name="ubicacion">
+		      <ion-option value="ubicación1">Ubicación1</ion-option>
+		      <ion-option value="ubicación2">Ubicación2</ion-option>
+		      <ion-option value="ubicación3">Ubicación3</ion-option>
+		      <ion-option value="ubicación4">Ubicación4</ion-option>
+		      <ion-option value="ubicación5">Ubicación5</ion-option>
+		    </ion-select>
+	      </ion-item> -->
+
+	       <ion-item>
+	        <ion-label stacked>Estado</ion-label>
+	        <ion-select  [(ngModel)]="form.estado" name="estado">
+		       <ion-option *ngFor='let estado of inputs.estados' [value]="estado.id">
+		      	{{estado.estado}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+			<ion-item-divider color="dark">
+			  Fotografía
+			  <button  color="light" ion-button item-end outline (click)="addPhoto()">
+			      Agregar
+			    </button>
+			</ion-item-divider>
+			<img width="100" [src]="form.imagen" *ngIf="form.imagen">
+
+	  </ion-list>
+
+      <button ion-button round color="dark" type="button" block (click)="saveActive()">Guardar</button>
+    </form>
+</ion-content>
