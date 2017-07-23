@@ -8,15 +8,19 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 @Pipe({
   name: 'search',
+  pure: false
 })
 export class SearchPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(items: Array<any>, searchTerm: string) {
+  transform(items: [any], searchTerm: string) {
+     if(!searchTerm)
+       return items;
      return items.filter((item) => {
-     	return item
-            // return item.codigo_de_barras.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+           if(!item.codigo_de_barras)
+             return;
+           return item.codigo_de_barras.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });  
   }
 }

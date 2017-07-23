@@ -10,29 +10,29 @@
 
 <ion-content >
 	<form>
-		<ion-list >
-	      <ion-item>
+		<ion-list>
+	     <ion-item>
 	        <ion-label stacked>Cuenta</ion-label>
-	        <ion-select  [(ngModel)]="form.cuenta" name="cuenta" (ngModelChange)="changeCuenta($event)">
-		      <ion-option *ngFor='let cuenta of inputs.cuentas' [value]="cuenta.id">
+	        <ion-select  [(ngModel)]="form.id_cuenta" name="cuenta" (ngModelChange)="changeCuenta($event)">
+		      <ion-option *ngFor='let cuenta of cuentas' [value]="cuenta.id">
 		      	{{cuenta.cuenta}}
 		      </ion-option>
 		    </ion-select>
 	      </ion-item>
-
+  
 	      <ion-item>
 	        <ion-label stacked>Clase</ion-label>
-	       <ion-select  [(ngModel)]="form.clase" name="clase">
-		      <ion-option *ngFor='let clase of form.cuenta.clases' [value]="clase">
+	       <ion-select  [(ngModel)]="form.id_clase" name="clase" (ngModelChange)="changeClase($event)">
+		      <ion-option *ngFor='let clase of clases' [value]="clase.id">
 		      	{{clase.clase}}
 		      </ion-option>
 		    </ion-select>
 	      </ion-item>
-
+		
 	    <ion-item>
 	        <ion-label stacked>Sub Clase</ion-label>
-	       <ion-select  [(ngModel)]="form.sub_clase" name="sub_clase">
-		       <ion-option *ngFor='let subClase of form.clase.subClases' [value]="subClase">
+	       <ion-select  [(ngModel)]="form.id_sub_clase" name="sub_clase" (ngModelChange)="changeSubClase($event)">
+		       <ion-option *ngFor='let subClase of subClases' [value]="subClase.id">
 		      	{{subClase.sub_clase}}
 		      </ion-option>
 		    </ion-select>
@@ -41,18 +41,18 @@
 
 		<ion-item>
 	        <ion-label stacked>Denomicación</ion-label>
-	       <ion-select  [(ngModel)]="form.denominacion" name="denominacion">
-		      <ion-option *ngFor='let denominacion of form.sub_clase.denominaciones' [value]="denominacion">
+	       <ion-select  [(ngModel)]="form.id_denominacion" name="denominacion">
+		      <ion-option *ngFor='let denominacion of denominaciones' [value]="denominacion.id">
 		      	{{denominacion.denominacion}}
 		      </ion-option>
 		    </ion-select>
 	      </ion-item>
-
+		
 				
 		<ion-item>
 	        <ion-label stacked>Dependencia</ion-label>
-	       <ion-select  [(ngModel)]="form.dependencia" name="dependencia">
-		      <ion-option *ngFor='let dependencia of inputs.dependencias' [value]="dependencia.id">
+	       <ion-select  [(ngModel)]="form.id_dependencia" name="dependencia">
+		      <ion-option *ngFor='let dependencia of dependencias' [value]="dependencia.id">
 		      	{{dependencia.dependencia}}
 		      </ion-option>
 		    </ion-select>
@@ -69,26 +69,14 @@
 	        <ion-label stacked>Código de Barras</ion-label>
 	        <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" name="codigo_de_barras"></ion-input>
 	      </ion-item>
-<!-- 		  
-	       <ion-item>
-	        <ion-label stacked>Fecha de Adquisición</ion-label>
-	        <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="form.fecha" name="fecha"></ion-datetime>
-
-	      </ion-item>
-
-	      <ion-item>
-	        <ion-label stacked>Nombre del prooveedor</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.nombre" name="nombre" ></ion-input>
-	      </ion-item>
-		 <ion-item>
-	        <ion-label stacked>Costo de adquisición</ion-label>
-	        <ion-input clearInput type="number"  [(ngModel)]="form.costo" name="costo" ></ion-input>
-	      </ion-item> -->
-			
-
 		  <ion-item>
 	        <ion-label stacked>Responsable</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.nombre_responsable" name="nombre_responsable" ></ion-input>
+
+	        <ion-select   [(ngModel)]="form.id_responsable" name="nombre_responsable">
+		      <ion-option *ngFor='let representante of representantes' [value]="representante.id">
+		      	{{representante.nombre}}
+		      </ion-option>
+		    </ion-select>
 	      </ion-item>
 
 	      <ion-item>
@@ -96,21 +84,10 @@
 	        <ion-input clearInput type="text"  [(ngModel)]="form.descripcion" name="descripcion" ></ion-input>
 	      </ion-item>
 
-<!-- 	      <ion-item>
-	        <ion-label stacked>Ubicación</ion-label>
-	        <ion-select   [(ngModel)]="form.ubicacion" name="ubicacion">
-		      <ion-option value="ubicación1">Ubicación1</ion-option>
-		      <ion-option value="ubicación2">Ubicación2</ion-option>
-		      <ion-option value="ubicación3">Ubicación3</ion-option>
-		      <ion-option value="ubicación4">Ubicación4</ion-option>
-		      <ion-option value="ubicación5">Ubicación5</ion-option>
-		    </ion-select>
-	      </ion-item> -->
-
 	       <ion-item>
 	        <ion-label stacked>Estado</ion-label>
-	        <ion-select  [(ngModel)]="form.estado" name="estado">
-		       <ion-option *ngFor='let estado of inputs.estados' [value]="estado.id">
+	        <ion-select  [(ngModel)]="form.id_estado" name="estado">
+		       <ion-option *ngFor='let estado of estados' [value]="estado.id">
 		      	{{estado.estado}}
 		      </ion-option>
 		    </ion-select>

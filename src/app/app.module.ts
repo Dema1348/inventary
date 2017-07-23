@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule} from '@angular/http';
 import { MyApp } from './app.component';
 
 import { ActivesPage } from '../pages/actives/actives';
@@ -8,6 +9,7 @@ import { ActivePage } from '../pages/active/active';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ConfigPage } from '../pages/config/config';
 import { FindPage } from '../pages/find/find';
+import { StatePage } from '../pages/state/state';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,10 +33,12 @@ import { CloudProvider } from '../providers/cloud/cloud';
     TabsPage,
     ConfigPage,
     FindPage,
+    StatePage,
     SearchPipe
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -45,7 +49,8 @@ import { CloudProvider } from '../providers/cloud/cloud';
     ActivePage,
     TabsPage,
     ConfigPage,
-    FindPage
+    FindPage,
+    StatePage
   ],
   providers: [
     StatusBar,

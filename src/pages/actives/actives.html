@@ -20,15 +20,15 @@
 	<ion-searchbar
 	  [(ngModel)]="searchTerm"
 	  [debounce]="500"
+	   type="text"
 	  placeholder="Ingrese el Código del Activo">
 	</ion-searchbar>
 	<ion-list>
-	 <ion-item-sliding  *ngFor="let item of items" >
+	 <ion-item-sliding  *ngFor="let item of items | search:searchTerm" >
 	    <ion-item >
-	      <h2>{{item.descripcion}}</h2>
-	      <h3>Código: {{item.codigo_de_barras}}</h3>
-	      <p>Creación: {{item.date_time |date:'dd/MM/yyyy hh:mm:ss'}}</p>
-	      <ion-icon color="danger" name="cloud-outline" item-end></ion-icon>
+	      <h2>Código de barra <span class="codigo">{{item.codigo_de_barras}}</span></h2>
+	      <h3>Agrego el {{item.date_time |date:'dd/MM/yyyy'}} a las {{item.date_time |date:'hh:mm:ss'}}</h3>
+	      <ion-icon color="danger" *ngIf="item.error" name="cloud-outline" item-end></ion-icon>
 	    </ion-item>
 
 	    <ion-item-options side="right"> 

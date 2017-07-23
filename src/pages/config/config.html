@@ -7,25 +7,38 @@
 
 
 
-<ion-content padding>
-	<form>
+<ion-content>
+	<form [formGroup]="form" (ngSubmit)="login()" *ngIf="!isLogin">
 		<ion-list >
 	      <ion-item>
-	        <ion-label stacked>Nombre</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.nombre" name="nombre"></ion-input>
-	      </ion-item>
-	      <ion-item>
 	        <ion-label stacked>Usuario</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.usuario" name="usuario"></ion-input>
-	      </ion-item> 
+	        <ion-select  [(ngModel)]="cacheUser" formControlName="usuario"  cancelText="Cancelar" >
+		      <ion-option *ngFor='let user of users' [value]="user">
+		      	{{user.username}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
+
+	        
 	      <ion-item>
-	        <ion-label stacked>Rut</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.rut" name="rut"></ion-input>
+	        <ion-label stacked>Clave</ion-label>
+	        <ion-input clearInput type="password"  [(ngModel)]="password" formControlName="password" ></ion-input>
 	      </ion-item> 
+	      
+	     
 
 
-	  </ion-list>
+	  	</ion-list>
+		<div padding>
+		    <button ion-button  color="dark" type="submit" block  [disabled]="!form.valid">Iniciar Sesión</button>
+		</div>
+	</form>	
 
-      <button ion-button round color="dark" type="button" block (click)="showConfirm()">Guardar</button>
-    </form>
+	<div padding *ngIf="isLogin">
+		    <button ion-button  color="dark" type="submit" block  (click)="logout()">Cerrar Sesión</button>
+		</div>
+
+    <div padding>
+    	<button ion-button  color="primary" type="button" block (click)="showEstado()">Ver Estado</button>
+	</div>
 </ion-content>

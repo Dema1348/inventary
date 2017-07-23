@@ -3,6 +3,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ScannerProvider } from '../../providers/scanner/scanner';
 import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
+import { filter } from 'lodash-es';
 
 /**
  * Generated class for the ActivePage page.
@@ -17,37 +18,54 @@ import { CameraProvider } from '../../providers/camera/camera';
 })
 export class ActivePage {
 
-  form = {
-  	cuenta:'',
-  	clase:'',
-  	sub_clase:'',
-    denominacion:'',
-  	dependencia:'',
-  	codigo_de_barras:'',
-  	nombre_responsable:'',
-  	descripcion:'',
-    estado:'',
-    imagen:'',
+  form:any= {
     date_time: new Date()
   }   
-  inputs={};
-
+  inputs:any;
+  cuentas=[];
+  clases=[];
+  subClases=[];
+  denominaciones=[];
+  dependencias=[];
+  usuarios=[];
+  representantes=[];
+  estados=[];
  
   
- 
 
   constructor(public navCtrl: NavController,public params: NavParams, public view: ViewController,  public scannerService: ScannerProvider, public cameraService: CameraProvider,public dataService: DataProvider ) {
-     if(params.get('item'))
-       this.form=params.get('item');
+    
 
-     // this.dataService.getInputs().then((actives) => {
-     //  if(actives){
-     //    this.items = JSON.parse(actives); 
-     //  }
-     // });
+     this.dataService.getInputs().then((inputs) => {
+      if(inputs){
+        this.inputs = JSON.parse(inputs); 
+        this.cuentas=this.inputs.cuentas;
+        this.clases=this.inputs.clases;
+        this.subClases=this.inputs.subClases;
+        this.denominaciones=this.inputs.denominaciones;
+        this.estados=this.inputs.estados;
+        this.dependencias=this.inputs.dependencias;
+        this.usuarios=this.inputs.usuarios;
+        this.representantes=this.inputs.representantes;
+        console.log(this.inputs);
+         if(params.get('item')){
+           let editData=params.get('item');
+            this.changeCuenta(editData.id_cuenta);
+            this.changeClase(editData.id_clase);
+            this.changeSubClase(editData.id_sub_clase);
+            this.form=editData;     
+         }else{
+           this.clases=[];
+           this.subClases=[];
+           this.denominaciones=[];
+         }
+          
+          
+      }
+     });
+      
 
-       this.inputs= this.dataService.getInputs();
-     
+
   }
 
   scanCode(){
@@ -80,10 +98,25 @@ export class ActivePage {
   }
 
   changeCuenta(id){
-    console.log(id);
+    this.clases=filter(this.inputs.clases,(clase)=>{
+      return clase['cuenta'] == id;
+    })
   }
 
+  changeClase(id){
 
+    this.subClases=filter(this.inputs.subClases,(subClase)=>{
+      return subClase['clase'] == id;
+    })
+  }
+
+  changeSubClase(id){
+
+    this.denominaciones=filter(this.inputs.denominaciones,(denomicacion)=>{
+      return denomicacion['sub_clase'] == id;
+    })
+     console.log(this.denominaciones);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivePage');

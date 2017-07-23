@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController} from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
+import { StatePage } from '../state/state';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the ConfigPage page.
@@ -16,24 +18,38 @@ import { AlertController } from 'ionic-angular';
 })
 export class ConfigPage {
 
-	public form={
-		nombre:'',
-		usuario:'',
-		rut:''
-	}
+  form : FormGroup;
+	isLogin:any=false;
+  password:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService: DataProvider,public alertCtrl: AlertController) {
- 	  this.dataService.getUser().then((user) => {
-      if(user){
-        this.form = JSON.parse(user); 
-      }
- 
-    });
+  users:any=[];
+
+  constructor(private formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataService: DataProvider,public alertCtrl: AlertController) {
+ 	    this.form = this.formBuilder.group({
+        usuario: ['', Validators.required],
+        password: ['',Validators.required]
+      });
+
+      this.dataService.getUser().then((user) => {
+        if(user){
+          this.isLogin=true;
+          console.log('Is login');
+        }
+      })
+
+      this.dataService.getUsers().then((users) => {
+        console.log(users);
+        if(users){
+          this.users=JSON.parse(users); 
+        }
+      })
+
   }
 
-  saveUser() {
-     this.dataService.saveUser(this.form);
-  }
+
+  // saveUser() {
+  //    this.dataService.saveUser(this.form);
+  // }
 
   showConfirm() {
     let confirm = this.alertCtrl.create({
@@ -49,12 +65,55 @@ export class ConfigPage {
         {
           text: 'Aceptar',
           handler: () => {
-            this.saveUser();
+
           }
         }
       ]
     });
     confirm.present();
   }
+
+
+  showEstado(){
+    let modalActive = this.modalCtrl.create(StatePage);
+    modalActive.onDidDismiss((response) => {
+    });
+
+
+    modalActive.present();
+  }
+ 
+  login(){
+    let password=this.form.value.usuario.rut.replace(/\./g,'');
+    password=password.replace(/-/g,'');
+
+    if(this.form.value.password == password){
+      this.dataService.saveUser(this.form.value.usuario);
+      this.isLogin=true;
+    }else{
+      this.showError();
+    }
+   
+  }
+
+  showError() {
+    let alert = this.alertCtrl.create({
+      title: 'Iniciar Sesión',
+      subTitle: 'Contraseña Invalida',
+      buttons: ['Aceptar']
+    });
+
+    alert.present();
+  }
+
+
+  logout(){
+    this.dataService.removeUser().then(()=>{
+      this.isLogin=false;
+    })
+  }
+  
+
+ 
 
 }

@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { ActivePage } from '../active/active';
 import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
+import { filter } from 'lodash-es';
 
 /**
  * Generated class for the ActivesPage page.
@@ -17,9 +18,9 @@ import { AlertController } from 'ionic-angular';
 })
 export class ActivesPage {
 
-  public items = [];
-  public searchTerm="";
-  // public searching = false;
+  items:any;
+  searchTerm: string ='';
+  searching = false;
 
   constructor(public navCtrl: NavController,public modalCtrl: ModalController, public dataService: DataProvider,public alertCtrl: AlertController) {
   
@@ -31,6 +32,7 @@ export class ActivesPage {
     });
 
   }
+
 
 
   addActive(){
@@ -49,9 +51,7 @@ export class ActivesPage {
   deleteActive(item){
     var index = this.items.indexOf(item, 0);
         if (index > -1) {
-          console.log(index);
             this.items.splice(index, 1);
-            console.log(this.items);
             this.dataService.save(this.items);
         }
   }
@@ -104,58 +104,6 @@ export class ActivesPage {
     });
     confirm.present();
   }
-
-   parseData(items){
-
-    for (var i = 0; i < items.length; ++i) {
-      var data={
-        id_activo: items[i].cuenta.id,
-        descripcion: items[i].descripcion,
-        id_cuenta: items[i].cuenta.id,
-        cuenta: items[i].cuenta.cuenta,
-        id_clase: items[i].clase.id,
-        clase:  items[i].clase.clase,
-        id_sub_clase: items[i].sub_clase.id,
-        sub_clase: items[i].sub_clase.sub_clase,
-        id_denominacion: items[i].denominacion.id,
-        denominacion: items[i].denominacion.denominacion,
-        id_dependencia: items[i].dependencia.id,
-        dependencia: items[i].dependencia.dependencia,
-        // id_usuario: 1,
-        // usuario: Carlos Bustamante,
-        // id_responsable: 1,
-        // nombre_responsable: Carlos Bustamante,
-        id_estado: items[i].estado.id,
-        estado: items[i].estado.estado,
-        codigo_de_barras: items[i].codigo_de_barras,
-        // date_time: 2017-07-18T00:33:47.000Z,
-        // fecha_de_adquisicion: null,
-        // tipo: null,
-        // nombre_del_proveedor: null,
-        // costo_de_aquisicion: null,
-        // ubicacion: null,
-        imagen: items[i].imagen
-      }
-    }
-
-    
-  }
-
-  // filterItems(searchTerm){
-  //       return this.items.filter((item) => {
-  //           return item.codigo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-  //       });     
- 
-  // }
-
-  // onSearchInput(){
-  //       this.searching = true;
-  // }
-
-  // setFilteredItems(){
-  //    this.items = this.filterItems(this.searchTerm);
-  //    this.searching = false;
-  // }
 
 
 
