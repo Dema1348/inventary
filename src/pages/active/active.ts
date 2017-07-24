@@ -4,6 +4,7 @@ import { ScannerProvider } from '../../providers/scanner/scanner';
 import { DataProvider } from '../../providers/data/data';
 import { CameraProvider } from '../../providers/camera/camera';
 import { filter } from 'lodash-es';
+import { AutoCompleteProvider } from '../../providers/auto-complete/auto-complete';
 
 /**
  * Generated class for the ActivePage page.
@@ -30,10 +31,10 @@ export class ActivePage {
   usuarios=[];
   representantes=[];
   estados=[];
- 
+   
   
 
-  constructor(public navCtrl: NavController,public params: NavParams, public view: ViewController,  public scannerService: ScannerProvider, public cameraService: CameraProvider,public dataService: DataProvider ) {
+  constructor(public navCtrl: NavController,public params: NavParams, public view: ViewController,  public scannerService: ScannerProvider, public cameraService: CameraProvider,public dataService: DataProvider,public autoComplete: AutoCompleteProvider ) {
     
 
      this.dataService.getInputs().then((inputs) => {
@@ -79,6 +80,7 @@ export class ActivePage {
   }
 
   saveActive(){
+    console.log(this.form);
     this.view.dismiss(this.form);
   }
 
@@ -116,6 +118,9 @@ export class ActivePage {
      console.log(this.denominaciones);
   }
 
+  getResponsable(responsable){
+    this.form.id_responsable=responsable.id;
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivePage');
   }

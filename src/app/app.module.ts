@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule} from '@angular/http';
 import { MyApp } from './app.component';
+import { AutoCompleteModule } from 'ionic2-auto-complete';
 
 import { ActivesPage } from '../pages/actives/actives';
 import { ActivePage } from '../pages/active/active';
@@ -23,6 +24,7 @@ import { ScannerProvider } from '../providers/scanner/scanner';
 import { CameraProvider } from '../providers/camera/camera';
 import { SearchPipe } from '../pipes/search/search';
 import { CloudProvider } from '../providers/cloud/cloud';
+import { AutoCompleteProvider } from '../providers/auto-complete/auto-complete';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { CloudProvider } from '../providers/cloud/cloud';
   imports: [
     BrowserModule,
     HttpModule,
+    AutoCompleteModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -61,7 +64,8 @@ import { CloudProvider } from '../providers/cloud/cloud';
     DataProvider,
     ScannerProvider,
     CameraProvider,
-    CloudProvider
+    CloudProvider,
+    AutoCompleteProvider
   ]
 })
 export class AppModule {}

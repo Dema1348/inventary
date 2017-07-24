@@ -57,7 +57,23 @@
 		      </ion-option>
 		    </ion-select>
 	      </ion-item>
+		<ion-item-divider color="dark">
+		  Buscar Responsable
+		</ion-item-divider>
+		<ion-auto-complete [dataProvider]="autoComplete" 
+		 [options]="{ placeholder : 'Nombre del responsable' }"
+		 (itemSelected)="getResponsable($event)"
+		 ></ion-auto-complete>
+		
+		  <ion-item>
+	        <ion-label stacked>Responsable</ion-label>
 
+	        <ion-select   [(ngModel)]="form.id_responsable" name="nombre_responsable">
+		      <ion-option *ngFor='let representante of representantes' [value]="representante.id">
+		      	{{representante.nombre}}
+		      </ion-option>
+		    </ion-select>
+	      </ion-item>
 
 		<ion-item-divider color="dark">
 		  Escanear Código
@@ -69,15 +85,7 @@
 	        <ion-label stacked>Código de Barras</ion-label>
 	        <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" name="codigo_de_barras"></ion-input>
 	      </ion-item>
-		  <ion-item>
-	        <ion-label stacked>Responsable</ion-label>
-
-	        <ion-select   [(ngModel)]="form.id_responsable" name="nombre_responsable">
-		      <ion-option *ngFor='let representante of representantes' [value]="representante.id">
-		      	{{representante.nombre}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
+		
 
 	      <ion-item>
 	        <ion-label stacked>Descripción</ion-label>

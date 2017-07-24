@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams , LoadingController} from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
-// import { StatePage } from '../state/state';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CloudProvider } from '../../providers/cloud/cloud';
 import moment from 'moment';
+
+
 
 /**
  * Generated class for the ConfigPage page.
