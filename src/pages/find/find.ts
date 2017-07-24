@@ -19,6 +19,7 @@ export class FindPage {
   assetId:any;
   asset:any;
   searching: any = false;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cloudService: CloudProvider, private alertCtrl: AlertController,public scannerService: ScannerProvider) {
 

@@ -3,7 +3,6 @@ import { NavController, ModalController } from 'ionic-angular';
 import { ActivePage } from '../active/active';
 import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
-import { filter } from 'lodash-es';
 
 /**
  * Generated class for the ActivesPage page.
@@ -18,7 +17,7 @@ import { filter } from 'lodash-es';
 })
 export class ActivesPage {
 
-  items:any;
+  items:any=[];
   searchTerm: string ='';
   searching = false;
 

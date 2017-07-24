@@ -2,6 +2,11 @@
 <ion-header >
   <ion-navbar color="dark">
     <ion-title>Configuración</ion-title>
+    <ion-buttons end>
+      <button ion-button color="light" outline (click)="showState()">
+        Estado
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -35,10 +40,26 @@
 	</form>	
 
 	<div padding *ngIf="isLogin">
-		    <button ion-button  color="dark" type="submit" block  (click)="logout()">Cerrar Sesión</button>
-		</div>
-
-    <div padding>
-    	<button ion-button  color="primary" type="button" block (click)="showEstado()">Ver Estado</button>
+		<ion-list>
+			<ion-card>
+				<ion-item>
+				    <ion-avatar item-start>
+				      <img src="assets/profile.jpg">
+				    </ion-avatar>
+				   <h2>{{username}}</h2>
+				   <h3>Sesión Iniciada</h3>
+				   <p>Correctamente</p>
+				</ion-item>
+				  
+				      <button ion-button icon-left clear  (click)="logout()">
+				        <ion-icon name="exit"></ion-icon>
+				        <div>Cerrar Sesión</div>
+				      </button>
+				   
+				    
+			 </ion-card>
+		</ion-list>
+		
 	</div>
+
 </ion-content>

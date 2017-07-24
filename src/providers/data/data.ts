@@ -57,8 +57,7 @@ export class DataProvider {
   }
 
   saveLastUpdate(data){
-    let newData = JSON.stringify(data);
-    this.storage.set('lastUdpate', newData);
+    this.storage.set('lastUdpate', data);
   }
 
   getLastUpdate(){

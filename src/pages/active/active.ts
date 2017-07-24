@@ -79,9 +79,7 @@ export class ActivePage {
   }
 
   saveActive(){
-    console.log(this.form);
     this.view.dismiss(this.form);
-
   }
 
   close(){

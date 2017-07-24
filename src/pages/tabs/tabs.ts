@@ -27,8 +27,11 @@ export class TabsPage {
   			Promise.all([this.cloudService.download(),this.cloudService.users()]).then((data)=>{
   			   this.dataService.saveInputs(data[0]);
   			   this.dataService.saveUsers(data[1]);
-	           this.dataService.saveLastUpdate(new Date());
-	           window.location.reload()
+	         this.dataService.saveLastUpdate(new Date());
+           setTimeout(()=>{
+              window.location.reload();
+           },2000) 
+	        
   			}).catch((error)=>{
 	           this.isReadyData=false;
 	           this.loading.dismiss();
@@ -45,7 +48,7 @@ export class TabsPage {
 
   loader() {
     this.loading = this.loadingCtrl.create({
-      content: 'Cargando datos...'
+      content: 'Actualizando información'
     });
 
     this.loading.present();
@@ -54,7 +57,7 @@ export class TabsPage {
 
    showError(text) {
 	  let alert = this.alertCtrl.create({
-	    title: 'Cargando datos...',
+	    title: 'Actualizando información',
 	    subTitle: text,
 	    buttons: ['Cancelar']
 	  });
