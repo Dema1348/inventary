@@ -41,23 +41,27 @@
 
 	<div padding *ngIf="isLogin">
 		<ion-list>
-			<ion-card>
 				<ion-item>
 				    <ion-avatar item-start>
 				      <img src="assets/profile.jpg">
 				    </ion-avatar>
-				   <h2>{{username}}</h2>
-				   <h3>Sesión Iniciada</h3>
-				   <p>Correctamente</p>
+				   <h2>Usuario</h2>
+				   <h3>{{username}}</h3>
+
+
 				</ion-item>
-				  
-				      <button ion-button icon-left clear  (click)="logout()">
-				        <ion-icon name="exit"></ion-icon>
-				        <div>Cerrar Sesión</div>
-				      </button>
+
+				 <ion-item>
+				  	 <h3>Sesión Iniciada</h3>
+				   <p>Correctamente</p>
+				    <button ion-button outline item-end icon-left (click)="logout()">
+				      <ion-icon name="exit"></ion-icon>
+				       Cerrar Sesión
+				    </button>
+				  </ion-item> 
+								     
 				   
 				    
-			 </ion-card>
 		</ion-list>
 		
 	</div>

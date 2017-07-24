@@ -37,4 +37,11 @@ export class CloudProvider {
         .toPromise();
   }
 
+
+  upload(data) {
+    return this.http.post(this.apiUrl+'/upload', data)
+        .map(res => res.json())
+        .toPromise();
+  }
+
 }

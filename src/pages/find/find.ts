@@ -19,7 +19,7 @@ export class FindPage {
   assetId:any;
   asset:any;
   searching: any = false;
-  
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cloudService: CloudProvider, private alertCtrl: AlertController,public scannerService: ScannerProvider) {
 
@@ -34,7 +34,6 @@ export class FindPage {
   	this.asset=null;
   	this.cloudService.findById(this.assetId).then((data)=>{
   		this.asset=data;
-      console.log(this.asset);
   		this.searching = false;
   	}).catch((error)=>{
   		this.showError("No se ha podido encontrar información sobre el activo buscado");

@@ -9,11 +9,11 @@
 
 
 <ion-content >
-	<form>
+	<form [formGroup]="form">
 		<ion-list>
 	     <ion-item>
 	        <ion-label stacked>Cuenta</ion-label>
-	        <ion-select  [(ngModel)]="form.id_cuenta" name="cuenta" (ngModelChange)="changeCuenta($event)">
+	        <ion-select  [(ngModel)]="form.id_cuenta" formControlName="id_cuenta" (ngModelChange)="changeCuenta($event)">
 		      <ion-option *ngFor='let cuenta of cuentas' [value]="cuenta.id">
 		      	{{cuenta.cuenta}}
 		      </ion-option>
@@ -22,7 +22,7 @@
   
 	      <ion-item>
 	        <ion-label stacked>Clase</ion-label>
-	       <ion-select  [(ngModel)]="form.id_clase" name="clase" (ngModelChange)="changeClase($event)">
+	       <ion-select  [(ngModel)]="form.id_clase" formControlName="id_clase" (ngModelChange)="changeClase($event)">
 		      <ion-option *ngFor='let clase of clases' [value]="clase.id">
 		      	{{clase.clase}}
 		      </ion-option>
@@ -31,7 +31,7 @@
 		
 	    <ion-item>
 	        <ion-label stacked>Sub Clase</ion-label>
-	       <ion-select  [(ngModel)]="form.id_sub_clase" name="sub_clase" (ngModelChange)="changeSubClase($event)">
+	       <ion-select  [(ngModel)]="form.id_sub_clase" formControlName="id_sub_clase" (ngModelChange)="changeSubClase($event)">
 		       <ion-option *ngFor='let subClase of subClases' [value]="subClase.id">
 		      	{{subClase.sub_clase}}
 		      </ion-option>
@@ -41,7 +41,7 @@
 
 		<ion-item>
 	        <ion-label stacked>Denomicación</ion-label>
-	       <ion-select  [(ngModel)]="form.id_denominacion" name="denominacion">
+	       <ion-select  [(ngModel)]="form.id_denominacion" formControlName="id_denominacion">
 		      <ion-option *ngFor='let denominacion of denominaciones' [value]="denominacion.id">
 		      	{{denominacion.denominacion}}
 		      </ion-option>
@@ -51,7 +51,7 @@
 				
 		<ion-item>
 	        <ion-label stacked>Dependencia</ion-label>
-	       <ion-select  [(ngModel)]="form.id_dependencia" name="dependencia">
+	       <ion-select  [(ngModel)]="form.id_dependencia" formControlName="id_dependencia">
 		      <ion-option *ngFor='let dependencia of dependencias' [value]="dependencia.id">
 		      	{{dependencia.dependencia}}
 		      </ion-option>
@@ -68,7 +68,7 @@
 		  <ion-item>
 	        <ion-label stacked>Responsable</ion-label>
 
-	        <ion-select   [(ngModel)]="form.id_responsable" name="nombre_responsable">
+	        <ion-select   [(ngModel)]="form.id_responsable" formControlName="id_responsable">
 		      <ion-option *ngFor='let representante of representantes' [value]="representante.id">
 		      	{{representante.nombre}}
 		      </ion-option>
@@ -83,18 +83,18 @@
 		</ion-item-divider>
 	      <ion-item>
 	        <ion-label stacked>Código de Barras</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" name="codigo_de_barras"></ion-input>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" formControlName="codigo_de_barras"></ion-input>
 	      </ion-item>
 		
 
 	      <ion-item>
 	        <ion-label stacked>Descripción</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.descripcion" name="descripcion" ></ion-input>
+	        <ion-input clearInput type="text"  [(ngModel)]="form.descripcion" formControlName="descripcion" ></ion-input>
 	      </ion-item>
 
 	       <ion-item>
 	        <ion-label stacked>Estado</ion-label>
-	        <ion-select  [(ngModel)]="form.id_estado" name="estado">
+	        <ion-select  [(ngModel)]="form.id_estado" formControlName="id_estado">
 		       <ion-option *ngFor='let estado of estados' [value]="estado.id">
 		      	{{estado.estado}}
 		      </ion-option>
@@ -106,10 +106,10 @@
 			      Agregar
 			    </button>
 			</ion-item-divider>
-			<img width="100" [src]="form.imagen" *ngIf="form.imagen">
+			<img width="100" [src]="img" *ngIf="img" >
 
 	  </ion-list>
 
-      <button ion-button round color="dark" type="button" block (click)="saveActive()">Guardar</button>
+      <button ion-button round color="dark" type="button" [disabled]="!form.valid" block (click)="saveActive()">Guardar</button>
     </form>
 </ion-content>

@@ -19,9 +19,10 @@ export class CameraProvider {
 
   take(){
   	return this.camera.getPicture({
-	  quality: 80,
+	  quality: 50,
 	  destinationType: this.camera.DestinationType.DATA_URL,
 	  encodingType: this.camera.EncodingType.JPEG,
+    targetWidth:450,
 	  mediaType: this.camera.MediaType.PICTURE
 	});
   }

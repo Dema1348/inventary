@@ -1,15 +1,16 @@
 <ion-header>
   <ion-navbar  color="dark">
-     <ion-buttons start>
-  		<button ion-button icon-only >
-        	<ion-icon name="sync" (click)="sync()"></ion-icon>
-      	</button>
-      </ion-buttons>
+       <ion-buttons start>
+      <button ion-button icon-only (click)="sync()">
+        <ion-icon name="sync"></ion-icon>
+      </button>
+    </ion-buttons>
+
     <ion-title>
       Activos 
     </ion-title>
      <ion-buttons end>
-      <button ion-button icon-only (click)="addActive(item)">
+      <button ion-button icon-only (click)="addActive()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
@@ -28,7 +29,7 @@
 	 <ion-item-sliding  *ngFor="let item of items | search:searchTerm" >
 	    <ion-item >
 	      <h2>Código de barra <span class="codigo">{{item.codigo_de_barras}}</span></h2>
-	      <h3>Agrego el {{item.date_time |date:'dd/MM/yyyy'}} a las {{item.date_time |date:'hh:mm:ss'}}</h3>
+	      <h3>Se agregó el día {{item.date_time |date:'dd/MM/yyyy'}} a las {{item.date_time |date:'hh:mm:ss'}}</h3>
 	      <ion-icon color="danger" *ngIf="item.error" name="cloud-outline" item-end></ion-icon>
 	    </ion-item>
 
