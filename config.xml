@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.edson.inventary" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Inventary</name>
+<widget id="io.edson.inventory" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Inventory</name>
     <description>Una aplicación para realizar inventarios.</description>
     <author email="eds.perez@ooutlook.com" >Edson Pérez Demanet</author>
     <content src="index.html"/>
