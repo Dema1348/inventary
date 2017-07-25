@@ -95,6 +95,7 @@ export class ActivesPage {
             active.date_time= moment(active.date_time).format('DD/MM/YYYY hh:mm:ss');
             return active;
           })
+          console.log(actives);
           this.cloudService.upload(actives).then((data)=>{
             this.loading.dismiss();
             this.updateList(data);

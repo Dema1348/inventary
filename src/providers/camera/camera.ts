@@ -23,6 +23,7 @@ export class CameraProvider {
 	  destinationType: this.camera.DestinationType.DATA_URL,
 	  encodingType: this.camera.EncodingType.JPEG,
     targetWidth:450,
+    targetHeight:450,
 	  mediaType: this.camera.MediaType.PICTURE
 	});
   }
