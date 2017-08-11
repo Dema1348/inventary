@@ -34,6 +34,7 @@ export class FindPage {
   	this.asset=null;
   	this.cloudService.findById(this.assetId).then((data)=>{
   		this.asset=data;
+      console.log(this.asset);
   		this.searching = false;
   	}).catch((error)=>{
   		this.showError("No se ha podido encontrar información sobre el activo buscado");

@@ -163,7 +163,7 @@ export class ActivesPage {
 
   }
 
-
+ 
 
 
   showInfo(text) {

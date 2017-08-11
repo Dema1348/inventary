@@ -1,103 +1,110 @@
-
 <ion-header>
-	<ion-toolbar color='dark'>
-		<ion-buttons solid start (click)="scanCode()">
-			<button ion-button color="light" outline>
-				Escanear
-			</button>
-		</ion-buttons>
-
-		<ion-searchbar  
-		 [(ngModel)]="assetId"
-		 type="text"
-		placeholder="Código">
-		</ion-searchbar>
-		<ion-buttons solid end (click)="findAsset()">
-			<button ion-button color="light" outline>
-				Buscar
-			</button>
-		</ion-buttons>
-	</ion-toolbar>
+   <ion-toolbar color='dark'>
+      <ion-buttons solid start (click)="scanCode()">
+         <button ion-button color="light" outline>
+         Escanear
+         </button>
+      </ion-buttons>
+      <ion-searchbar  
+      [(ngModel)]="assetId"
+      type="text"
+      placeholder="Código">
+      </ion-searchbar>
+      <ion-buttons solid end (click)="findAsset()">
+         <button ion-button color="light" outline>
+         Buscar
+         </button>
+      </ion-buttons>
+   </ion-toolbar>
 </ion-header>
-
-
 <ion-content >
-	<div *ngIf="searching" class="spinner-container">
-        <ion-spinner></ion-spinner>
-	</div>
-	<ion-list *ngIf="!searching && asset">
-       
-	  <ion-item *ngIf="asset.cuenta">
-	    <h2>Cuenta</h2>
-	    <h3>{{asset.cuenta}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.clase">
-	    <h2>Clase</h2>
-	    <h3>{{asset.clase}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.sub_clase">
-	    <h2>{{asset.sub_clase}}</h2>
-	    <h3>Sub Clase</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.denominacion">
-	    <h2>Denominación</h2>
-	    <h3>{{asset.denominacion}}</h3>
-	  </ion-item>
+   <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+   </div>
+   <ion-list *ngIf="!searching && asset">
+      <ion-item *ngIf="asset.cuenta">
+         <h2>Cuenta</h2>
+         <h3>{{asset.cuenta}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.clase">
+         <h2>Clase</h2>
+         <h3>{{asset.clase}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.sub_clase">
+         <h2>Sub Clase</h2>
+         <h3>{{asset.sub_clase}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.denominacion">
+         <h2>Denominación</h2>
+         <h3>{{asset.denominacion}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.dependencia">
+         <h2>Dependencia</h2>
+         <h3>{{asset.dependencia}}</h3>
+      </ion-item>
+
+      <ion-item *ngIf="asset.marca">
+         <h2>Marca</h2>
+         <h3>{{asset.marca}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.modelo">
+         <h2>Modelo</h2>
+         <h3>{{asset.modelo}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.n_serie">
+         <h2>Nº de Serie</h2>
+         <h3>{{asset.n_serie}}</h3>
+      </ion-item>
 	  <ion-item *ngIf="asset.nombre_responsable">
-	    <h2>Denominación</h2>
-	    <h3>{{asset.nombre_responsable}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.codigo_de_barras">
-	    <h2>Código de Barras</h2>
-	    <h3>{{asset.codigo_de_barras}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.descripcion">
-	    <h2>Descripción</h2>
-	    <h3>{{asset.descripcion}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.estado">
-	    <h2>Estado</h2>
-	    <h3>{{asset.estado}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.usuario">
-	    <h2>Agregado por el Usuario</h2>
-	    <h3>{{asset.usuario}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.date_time">
-	    <h2>Creado el Día</h2>
-	    <h3>{{asset.date_time}}</h3>
-	  </ion-item>
-	  
-	  <ion-item *ngIf="asset.nombre_del_proveedor">
-	    <h2>Nombre del Proveedor</h2>
-	    <h3>{{asset.nombre_del_proveedor}}</h3>
-	  </ion-item>
+         <h2>Responsable</h2>
+         <h3>{{asset.nombre_responsable}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.descripcion">
+         <h2>Descripción</h2>
+         <h3>{{asset.descripcion}}</h3>
+      </ion-item>
+        
+      	  <ion-item *ngIf="asset.codigo_de_barras">
+         <h2>Código de barras</h2>
+         <h3>{{asset.codigo_de_barras}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.estado">
+         <h2>Estado</h2>
+         <h3>{{asset.estado}}</h3>
+      </ion-item>
 
-	  <ion-item *ngIf="asset.fecha_de_adquisicion">
-	    <h2>Fecha de Adquisición</h2>
-	    <h3>{{asset.fecha_de_adquisicion}}</h3>
-	  </ion-item>
-
-	  <ion-item *ngIf="asset.costo_de_aquisicion">
-	    <h2>Costo de Adquisición</h2>
-	    <h3>{{asset.costo_de_aquisicion}}</h3>
-	  </ion-item>
-	  <ion-item *ngIf="asset.tipo">
-	    <h2>Tipo</h2>
-	    <h3>{{asset.tipo}}</h3>
-	  </ion-item>
-
-	  <ion-item *ngIf="asset.ubicacion">
-	    <h2>Ubicación</h2>
-	    <h3>{{asset.ubicacion}}</h3>
-	  </ion-item>
-
-	  
-	  <img width="100" [src]="asset.imagen" *ngIf="asset.imagen">
-
-	  
-	  
-    </ion-list>
- 
-
+      <ion-item *ngIf="asset.usuario">
+         <h2>Agregado por el Usuario</h2>
+         <h3>{{asset.usuario}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.date_time">
+         <h2>Creado el Día</h2>
+         <h3>{{asset.date_time}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.nombre_del_proveedor">
+         <h2>Nombre del Proveedor</h2>
+         <h3>{{asset.nombre_del_proveedor}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.fecha_de_adquisicion">
+         <h2>Fecha de Adquisición</h2>
+         <h3>{{asset.fecha_de_adquisicion}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.costo_de_aquisicion">
+         <h2>Costo de Adquisición</h2>
+         <h3>{{asset.costo_de_aquisicion}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.tipo">
+         <h2>Tipo</h2>
+         <h3>{{asset.tipo}}</h3>
+      </ion-item>
+      <ion-item *ngIf="asset.ubicacion">
+         <h2>Ubicación</h2>
+         <h3>{{asset.ubicacion}}</h3>
+      </ion-item>
+      <img width="100" [src]="asset.imagen" *ngIf="asset.imagen">
+      <ion-item *ngIf="asset.observaciones">
+         <h2>Observaciones</h2>
+         <h3>{{asset.observaciones}}</h3>
+      </ion-item>
+   </ion-list>
 </ion-content>

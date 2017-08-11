@@ -25,6 +25,7 @@ import { CameraProvider } from '../providers/camera/camera';
 import { SearchPipe } from '../pipes/search/search';
 import { CloudProvider } from '../providers/cloud/cloud';
 import { AutoCompleteProvider } from '../providers/auto-complete/auto-complete';
+import { AutoCompleteMarcaProvider } from '../providers/auto-complete/auto-complete-marca';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { AutoCompleteProvider } from '../providers/auto-complete/auto-complete';
     ScannerProvider,
     CameraProvider,
     CloudProvider,
-    AutoCompleteProvider
+    AutoCompleteProvider,
+    AutoCompleteMarcaProvider
   ]
 })
 export class AppModule {}

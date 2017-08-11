@@ -1,115 +1,144 @@
 <ion-header >
-  <ion-navbar color="dark">
-    <ion-title>Activo</ion-title>
-     <ion-buttons end>
-        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+   <ion-navbar color="dark">
+      <ion-title>Activo</ion-title>
+      <ion-buttons end>
+         <button ion-button icon-only (click)="close()">
+            <ion-icon name="close"></ion-icon>
+         </button>
       </ion-buttons>
-  </ion-navbar>
+   </ion-navbar>
 </ion-header>
-
-
 <ion-content >
-	<form [formGroup]="form">
-		<ion-list>
-	     <ion-item>
-	        <ion-label stacked>Cuenta</ion-label>
-	        <ion-select  [(ngModel)]="form.id_cuenta" formControlName="id_cuenta" (ngModelChange)="changeCuenta($event)">
-		      <ion-option *ngFor='let cuenta of cuentas' [value]="cuenta.id">
-		      	{{cuenta.cuenta}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-  
-	      <ion-item>
-	        <ion-label stacked>Clase</ion-label>
-	       <ion-select  [(ngModel)]="form.id_clase" formControlName="id_clase" (ngModelChange)="changeClase($event)">
-		      <ion-option *ngFor='let clase of clases' [value]="clase.id">
-		      	{{clase.clase}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-		
-	    <ion-item>
-	        <ion-label stacked>Sub Clase</ion-label>
-	       <ion-select  [(ngModel)]="form.id_sub_clase" formControlName="id_sub_clase" (ngModelChange)="changeSubClase($event)">
-		       <ion-option *ngFor='let subClase of subClases' [value]="subClase.id">
-		      	{{subClase.sub_clase}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-		
-
-		<ion-item>
-	        <ion-label stacked>Denomicación</ion-label>
-	       <ion-select  [(ngModel)]="form.id_denominacion" formControlName="id_denominacion">
-		      <ion-option *ngFor='let denominacion of denominaciones' [value]="denominacion.id">
-		      	{{denominacion.denominacion}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-		
-				
-		<ion-item>
-	        <ion-label stacked>Dependencia</ion-label>
-	       <ion-select  [(ngModel)]="form.id_dependencia" formControlName="id_dependencia">
-		      <ion-option *ngFor='let dependencia of dependencias' [value]="dependencia.id">
-		      	{{dependencia.dependencia}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-		<ion-item-divider color="dark">
-		  Buscar Responsable
-		</ion-item-divider>
-		<ion-auto-complete [dataProvider]="autoComplete" 
-		 [options]="{ placeholder : 'Nombre del responsable' }"
-		 (itemSelected)="getResponsable($event)"
-		 ></ion-auto-complete>
-		
-		  <ion-item>
-	        <ion-label stacked>Responsable</ion-label>
-
-	        <ion-select   [(ngModel)]="form.id_responsable" formControlName="id_responsable">
-		      <ion-option *ngFor='let representante of representantes' [value]="representante.id">
-		      	{{representante.nombre}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-
-		<ion-item-divider color="dark">
-		  Escanear Código
-		  <button  color="light" ion-button item-end outline (click)="scanCode()">
-		      Agregar
-		    </button>
-		</ion-item-divider>
-	      <ion-item>
-	        <ion-label stacked>Código de Barras</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" formControlName="codigo_de_barras"></ion-input>
-	      </ion-item>
-		
-
-	      <ion-item>
-	        <ion-label stacked>Descripción</ion-label>
-	        <ion-input clearInput type="text"  [(ngModel)]="form.descripcion" formControlName="descripcion" ></ion-input>
-	      </ion-item>
-
-	       <ion-item>
-	        <ion-label stacked>Estado</ion-label>
-	        <ion-select  [(ngModel)]="form.id_estado" formControlName="id_estado">
-		       <ion-option *ngFor='let estado of estados' [value]="estado.id">
-		      	{{estado.estado}}
-		      </ion-option>
-		    </ion-select>
-	      </ion-item>
-			<ion-item-divider color="dark">
-			  Fotografía
-			  <button  color="light" ion-button item-end outline (click)="addPhoto()">
-			      Agregar
-			    </button>
-			</ion-item-divider>
-			<img width="100" [src]="img" *ngIf="img" >
-
-	  </ion-list>
-
+   <form [formGroup]="form">
+      <ion-list>
+         <ion-item>
+            <ion-label stacked>Cuenta</ion-label>
+            <ion-select  [(ngModel)]="form.id_cuenta" formControlName="id_cuenta" (ngModelChange)="changeCuenta($event)">
+            <ion-option *ngFor='let cuenta of cuentas' [value]="cuenta.id">
+            {{cuenta.cuenta}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Clase</ion-label>
+            <ion-select  [(ngModel)]="form.id_clase" formControlName="id_clase" (ngModelChange)="changeClase($event)">
+            <ion-option *ngFor='let clase of clases' [value]="clase.id">
+            {{clase.clase}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Sub Clase</ion-label>
+            <ion-select  [(ngModel)]="form.id_sub_clase" formControlName="id_sub_clase" (ngModelChange)="changeSubClase($event)">
+            <ion-option *ngFor='let subClase of subClases' [value]="subClase.id">
+            {{subClase.sub_clase}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Denomicación</ion-label>
+            <ion-select  [(ngModel)]="form.id_denominacion" formControlName="id_denominacion">
+            <ion-option *ngFor='let denominacion of denominaciones' [value]="denominacion.id">
+            {{denominacion.denominacion}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Dependencia</ion-label>
+            <ion-select  [(ngModel)]="form.id_dependencia" formControlName="id_dependencia">
+            <ion-option *ngFor='let dependencia of dependencias' [value]="dependencia.id">
+            {{dependencia.dependencia}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item-divider color="dark">
+            Buscar Marca
+         </ion-item-divider>
+         <ion-auto-complete [dataProvider]="autoMarcaComplete" 
+         [options]="{ placeholder : 'Nombre de la marca' }"
+         (itemSelected)="getMarca($event)"
+         ></ion-auto-complete>
+         <ion-item>
+            <ion-label stacked>Marca</ion-label>
+            <ion-select   [(ngModel)]="form.id_marca" formControlName="id_marca">
+            <ion-option *ngFor='let marca of marcas' [value]="marca.id">
+            {{marca.marca}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Modelo</ion-label>
+            <ion-input clearInput type="text"  [(ngModel)]="form.modelo" formControlName="modelo" ></ion-input>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Nº de Serie</ion-label>
+            <ion-input clearInput type="text"  [(ngModel)]="form.n_serie" formControlName="n_serie" ></ion-input>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Departamento</ion-label>
+            <ion-select  [(ngModel)]="form.departamento" formControlName="departamento" (ngModelChange)="changeDepartamento($event)">
+            <ion-option *ngFor='let departamento of departamentos' [value]="departamento.id">
+            {{departamento.departamento}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Sub Departamento</ion-label>
+            <ion-select  [(ngModel)]="form.sub_departamento" formControlName="sub_departamento" >
+            <ion-option *ngFor='let subdepartamento of subdepartamentos' [value]="subdepartamento.id">
+            {{subdepartamento.subdepartamento}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item-divider color="dark">
+            Buscar Responsable
+         </ion-item-divider>
+         <ion-auto-complete [dataProvider]="autoComplete" 
+         [options]="{ placeholder : 'Nombre del responsable' }"
+         (itemSelected)="getResponsable($event)"
+         ></ion-auto-complete>
+         <ion-item>
+            <ion-label stacked>Responsable</ion-label>
+            <ion-select   [(ngModel)]="form.id_responsable" formControlName="id_responsable">
+            <ion-option *ngFor='let representante of representantes' [value]="representante.id">
+            {{representante.nombre}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Descripción</ion-label>
+            <ion-input clearInput type="text"  [(ngModel)]="form.descripcion" formControlName="descripcion" ></ion-input>
+         </ion-item>
+         <ion-item-divider color="dark">
+            Escanear Código
+            <button  color="light" ion-button item-end outline (click)="scanCode()">
+            Agregar
+            </button>
+         </ion-item-divider>
+         <ion-item>
+            <ion-label stacked>Código de Barras</ion-label>
+            <ion-input clearInput type="text"  [(ngModel)]="form.codigo_de_barras" formControlName="codigo_de_barras"></ion-input>
+         </ion-item>
+         <ion-item>
+            <ion-label stacked>Estado</ion-label>
+            <ion-select  [(ngModel)]="form.id_estado" formControlName="id_estado">
+            <ion-option *ngFor='let estado of estados' [value]="estado.id">
+            {{estado.estado}}
+            </ion-option>
+            </ion-select>
+         </ion-item>
+         <ion-item-divider color="dark">
+            Fotografía
+            <button  color="light" ion-button item-end outline (click)="addPhoto()">
+            Agregar
+            </button>
+         </ion-item-divider>
+         <img width="100" [src]="img" *ngIf="img" >
+         <ion-item>
+            <ion-label stacked>Observaciones</ion-label>
+            <ion-textarea [(ngModel)]="form.observaciones" formControlName="observaciones"></ion-textarea>
+         </ion-item>
+      </ion-list>
       <button ion-button round color="dark" type="button" [disabled]="!form.valid" block (click)="saveActive()">Guardar</button>
-    </form>
+   </form>
 </ion-content>
